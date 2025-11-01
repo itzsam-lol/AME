@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AME - Accounting Made Easy | AI-Powered Business Assistant</title>
+    <title>AME | AI-Powered Business Assistant</title>
+    <link rel="icon" type="image/png" href="bbg1.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
@@ -15,24 +14,49 @@
         }
 
         :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --primary-light: #818cf8;
-            --secondary: #0ea5e9;
-            --accent: #f59e0b;
-            --success: #10b981;
-            --bg-dark: #0f172a;
-            --bg-medium: #1e293b;
-            --bg-light: #334155;
+            --primary: #8A2BE2; /* BlueViolet */
+            --primary-dark: #7B1FA2;
+            --primary-light: #9C27B0;
+            --secondary: #00BCD4; /* Cyan */
+            --accent: #FFC107; /* Amber */
+            --success: #4CAF50;
+            --bg-dark: #110e19;
+            --bg-medium: #1a1423;
+            --bg-light: #2c233d;
             --text-primary: #ffffff;
-            --text-secondary: #cbd5e1;
-            --text-muted: #94a3b8;
-            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --gradient-main: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            --text-secondary: #e0e0e0;
+            --text-muted: #bdbdbd;
+            --gradient-main: linear-gradient(135deg, #8A2BE2 0%, #00BCD4 100%);
         }
 
+        .background-logo {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 70vh;
+            height: 70vh;
+            z-index: -1;
+            opacity: 0.05;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            animation: rotate3D 60s infinite linear;
+        }
+
+        .background-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        @keyframes rotate3D {
+            from {
+                transform: translate(-50%, -50%) rotateY(0deg) rotateX(10deg);
+            }
+            to {
+                transform: translate(-50%, -50%) rotateY(360deg) rotateX(10deg);
+            }
+        }
+        
         .floating-element {
             position: fixed;
             width: 80px;
@@ -46,7 +70,7 @@
             color: white;
             z-index: 10000;
             pointer-events: none;
-            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.6);
+            box-shadow: 0 10px 40px rgba(138, 43, 226, 0.6);
             transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
             opacity: 0;
         }
@@ -63,11 +87,11 @@
         @keyframes pulse {
             0%, 100% {
                 transform: scale(1);
-                box-shadow: 0 10px 40px rgba(102, 126, 234, 0.6);
+                box-shadow: 0 10px 40px rgba(138, 43, 226, 0.6);
             }
             50% {
                 transform: scale(1.1);
-                box-shadow: 0 15px 60px rgba(102, 126, 234, 0.8);
+                box-shadow: 0 15px 60px rgba(138, 43, 226, 0.8);
             }
         }
 
@@ -91,33 +115,14 @@
             transition: all 0.3s ease;
             position: relative;
         }
-
-        .indicator-dot::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: var(--primary-light);
-            transition: all 0.3s ease;
-        }
-
+        
         .indicator-dot.active {
-            background: var(--primary-light);
+            background: var(--secondary);
             transform: scale(1.3);
         }
 
-        .indicator-dot.active::before {
-            width: 24px;
-            height: 24px;
-            opacity: 0.3;
-        }
-
         .indicator-dot:hover {
-            background: var(--primary-light);
+            background: var(--secondary);
             transform: scale(1.2);
         }
 
@@ -142,7 +147,7 @@
         .particle {
             position: absolute;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.6) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(138, 43, 226, 0.6) 0%, transparent 70%);
             animation: float 20s infinite ease-in-out;
         }
 
@@ -158,21 +163,21 @@
             top: 0;
             width: 100%;
             z-index: 1000;
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(20px);
+            background: rgba(26, 20, 35, 0.5); /* Glassmorphism */
+            backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
         }
 
         nav.scrolled {
-            background: rgba(15, 23, 42, 0.95);
+            background: rgba(26, 20, 35, 0.8);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
         }
 
         .nav-container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 1.2rem 2rem;
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -181,19 +186,22 @@
         .logo {
             font-size: 1.8rem;
             font-weight: 800;
-            background: var(--gradient-main);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--text-primary);
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
             cursor: pointer;
             transition: transform 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .logo img {
+            height: 40px;
+            transition: transform 0.5s ease;
         }
 
-        .logo:hover {
-            transform: scale(1.05);
+        .logo:hover img {
+            transform: rotateY(180deg);
         }
 
         .nav-links {
@@ -241,12 +249,12 @@
             cursor: pointer;
             font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.4);
         }
 
         .cta-nav:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
+            box-shadow: 0 6px 25px rgba(138, 43, 226, 0.6);
         }
 
         .hero {
@@ -291,14 +299,8 @@
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .hero-buttons {
@@ -323,22 +325,23 @@
         .btn-primary {
             background: var(--gradient-main);
             color: white;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.4);
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+            box-shadow: 0 15px 40px rgba(138, 43, 226, 0.6);
         }
 
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05); /* Glassmorphism */
+            backdrop-filter: blur(5px);
             color: var(--text-primary);
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.1);
             border-color: rgba(255, 255, 255, 0.3);
             transform: translateY(-3px);
         }
@@ -349,14 +352,8 @@
         }
 
         @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         .phone-mockup {
@@ -373,15 +370,15 @@
         }
 
         .phone-frame {
-            background: linear-gradient(145deg, #1e293b, #0f172a);
+            background: linear-gradient(145deg, #1a1423, #110e19);
             border-radius: 50px;
             padding: 1rem;
             box-shadow: 0 50px 100px rgba(0, 0, 0, 0.5);
-            border: 3px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .phone-screen {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--gradient-main);
             border-radius: 40px;
             aspect-ratio: 9/19.5;
             display: flex;
@@ -401,23 +398,24 @@
             gap: 1rem;
         }
 
-        .preview-header {
-            background: rgba(255, 255, 255, 0.2);
+        .preview-header, .preview-card {
+            background: rgba(255, 255, 255, 0.1); /* Glassmorphism */
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        
+        .preview-header {
             text-align: center;
             font-weight: 700;
             font-size: 1.2rem;
         }
-
+        
         .preview-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 1rem;
             animation: slideIn 2s ease infinite;
         }
+        
 
         @keyframes slideIn {
             0%, 100% { transform: translateX(0); opacity: 1; }
@@ -461,8 +459,8 @@
         }
 
         .feature-card {
-            background: rgba(30, 41, 59, 0.6);
-            backdrop-filter: blur(10px);
+            background: rgba(26, 20, 35, 0.4); /* Glassmorphism */
+            backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 25px;
             padding: 2.5rem;
@@ -482,11 +480,12 @@
             background: var(--gradient-main);
             opacity: 0;
             transition: opacity 0.4s ease;
+            z-index: -1;
         }
 
         .feature-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 20px 60px rgba(138, 43, 226, 0.3);
         }
 
         .feature-card:hover::before {
@@ -524,7 +523,8 @@
 
         .stats {
             padding: 6rem 2rem;
-            background: rgba(30, 41, 59, 0.4);
+            background: rgba(26, 20, 35, 0.3); /* Glassmorphism */
+            backdrop-filter: blur(10px);
             position: relative;
             z-index: 1;
         }
@@ -567,11 +567,12 @@
         .download-container {
             max-width: 1000px;
             margin: 0 auto;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            background: rgba(26, 20, 35, 0.4); /* Glassmorphism */
+            backdrop-filter: blur(15px);
             border-radius: 40px;
             padding: 5rem;
             text-align: center;
-            border: 2px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .download-container h2 {
@@ -598,8 +599,9 @@
             align-items: center;
             gap: 1rem;
             padding: 1.2rem 2.5rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05); /* Glassmorphism */
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 20px;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -608,24 +610,14 @@
         }
 
         .store-button:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
             transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
 
-        .store-icon {
-            font-size: 2.5rem;
-        }
-
-        .store-text-small {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .store-text-large {
-            font-size: 1.3rem;
-            font-weight: 700;
-        }
+        .store-icon { font-size: 2.5rem; }
+        .store-text-small { font-size: 0.8rem; color: var(--text-muted); }
+        .store-text-large { font-size: 1.3rem; font-weight: 700; }
 
         .support {
             padding: 8rem 2rem;
@@ -642,16 +634,21 @@
             align-items: start;
         }
 
-        .chatbot-preview {
-            background: rgba(30, 41, 59, 0.6);
-            backdrop-filter: blur(10px);
+        .chatbot-preview, .ticket-form-container {
+            background: rgba(26, 20, 35, 0.4); /* Glassmorphism */
+            backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 30px;
             padding: 2rem;
+        }
+        
+        .chatbot-preview {
             height: 600px;
             display: flex;
             flex-direction: column;
+            padding: 2rem;
         }
+
 
         .chat-header {
             display: flex;
@@ -699,23 +696,17 @@
         }
 
         @keyframes messageSlide {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .message.bot {
-            background: rgba(102, 126, 234, 0.2);
+            background: rgba(138, 43, 226, 0.2);
             align-self: flex-start;
         }
 
         .message.user {
-            background: rgba(14, 165, 233, 0.2);
+            background: rgba(0, 188, 212, 0.2);
             align-self: flex-end;
         }
 
@@ -759,76 +750,16 @@
 
         .chat-send:hover {
             transform: scale(1.1);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.5);
+            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.5);
         }
-
+        
         .ticket-form-container {
-            background: rgba(30, 41, 59, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 30px;
             padding: 3rem;
         }
 
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 1rem 1.5rem;
-            border-radius: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-primary);
-            font-size: 1rem;
-            font-family: inherit;
-            transition: all 0.3s ease;
-            outline: none;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .submit-ticket {
-            width: 100%;
-            padding: 1.2rem;
-            border-radius: 15px;
-            background: var(--gradient-main);
-            border: none;
-            color: white;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .submit-ticket:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
-        }
-
         footer {
-            background: rgba(15, 23, 42, 0.8);
+            background: rgba(17, 14, 25, 0.5); /* Glassmorphism */
+            backdrop-filter: blur(15px);
             padding: 4rem 2rem 2rem;
             position: relative;
             z-index: 1;
@@ -847,11 +778,14 @@
         .footer-brand h3 {
             font-size: 2rem;
             font-weight: 800;
-            background: var(--gradient-main);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
             margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .footer-brand h3 img {
+            height: 35px;
         }
 
         .footer-brand p {
@@ -869,7 +803,7 @@
             width: 45px;
             height: 45px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -877,6 +811,7 @@
             color: var(--text-primary);
             text-decoration: none;
             transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .social-link:hover {
@@ -890,23 +825,10 @@
             margin-bottom: 1.5rem;
         }
 
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary-light);
-        }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 0.8rem; }
+        .footer-links a { color: var(--text-secondary); text-decoration: none; transition: color 0.3s ease; }
+        .footer-links a:hover { color: var(--secondary); }
 
         .footer-bottom {
             text-align: center;
@@ -922,20 +844,18 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.6);
             z-index: 2000;
             align-items: center;
             justify-content: center;
             padding: 2rem;
         }
 
-        .modal.active {
-            display: flex;
-        }
+        .modal.active { display: flex; }
 
         .modal-content {
-            background: var(--bg-medium);
+            background: rgba(26, 20, 35, 0.8); /* Glassmorphism */
+            backdrop-filter: blur(20px);
             border-radius: 30px;
             padding: 3rem;
             max-width: 500px;
@@ -946,14 +866,8 @@
         }
 
         @keyframes modalSlide {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .modal-close {
@@ -1008,71 +922,25 @@
         }
 
         @media (max-width: 1024px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero-buttons {
-                justify-content: center;
-            }
-
-            .hero-visual {
-                max-width: 400px;
-                margin: 0 auto;
-            }
-
-            .support-container {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-container {
-                grid-template-columns: 1fr 1fr;
-            }
+            .hero-content { grid-template-columns: 1fr; text-align: center; }
+            .hero-buttons { justify-content: center; }
+            .hero-visual { max-width: 400px; margin: 0 auto; }
+            .support-container { grid-template-columns: 1fr; }
+            .footer-container { grid-template-columns: 1fr 1fr; }
         }
 
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-text p {
-                font-size: 1.1rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .download-container {
-                padding: 3rem 2rem;
-            }
-
-            .download-container h2 {
-                font-size: 2rem;
-            }
-
-            .footer-container {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .btn-primary, .btn-secondary {
-                width: 100%;
-                justify-content: center;
-            }
+            .nav-links { display: none; }
+            .hero-text h1 { font-size: 2.5rem; }
+            .hero-text p { font-size: 1.1rem; }
+            .section-title { font-size: 2rem; }
+            .features-grid { grid-template-columns: 1fr; }
+            .download-container { padding: 3rem 2rem; }
+            .download-container h2 { font-size: 2rem; }
+            .footer-container { grid-template-columns: 1fr; }
+            .hero-buttons { flex-direction: column; gap: 1rem; }
+            .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+            .background-logo { opacity: 0.03; }
         }
 
         .scroll-indicator {
@@ -1084,15 +952,9 @@
         }
 
         @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            40% {
-                transform: translateX(-50%) translateY(-20px);
-            }
-            60% {
-                transform: translateX(-50%) translateY(-10px);
-            }
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-20px); }
+            60% { transform: translateX(-50%) translateY(-10px); }
         }
 
         .scroll-indicator div {
@@ -1112,30 +974,27 @@
             width: 6px;
             height: 6px;
             border-radius: 50%;
-            background: var(--primary-light);
+            background: var(--secondary);
             animation: scroll 2s infinite;
         }
 
         @keyframes scroll {
-            0% {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0);
-            }
-            100% {
-                opacity: 0;
-                transform: translateX(-50%) translateY(20px);
-            }
+            0% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(20px); }
         }
     </style>
 </head>
 <body>
+    <div class="background-logo">
+        <img src="bbg1.png" alt="3D Background Logo">
+    </div>
     <div class="particles"></div>
 
     <nav id="navbar">
         <div class="nav-container">
-            <div class="logo">
-                <i class="fas fa-calculator"></i> AME
-            </div>
+            <a href="#" class="logo">
+                <img src="bbg1.png" alt="AME Logo"> AME
+            </a>
             <ul class="nav-links">
                 <li><a href="#features">Features</a></li>
                 <li><a href="#download">Download</a></li>
@@ -1149,7 +1008,7 @@
     <section class="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <h1>Accounting Made Easy with AI Intelligence</h1>
+                <h1>Your Business, Supercharged by AI. This is AME.</h1>
                 <p>The ultimate business assistant designed for Indian SMBs. Manage invoices, inventory, GST compliance, and customer relations - all powered by cutting-edge AI technology.</p>
                 <div class="hero-buttons">
                     <button class="btn-primary" onclick="navigateWithAnimation('download', 'fa-download')">
@@ -1343,38 +1202,27 @@
             </div>
 
             <div class="ticket-form-container">
-                <h2 class="section-title" style="font-size: 2rem; text-align: left;">Raise a Support Ticket</h2>
-                <p style="color: var(--text-secondary); margin-bottom: 2rem;">For complex issues or feature requests, submit a ticket and our team will get back to you within 24 hours.</p>
-                <form id="ticketForm" onsubmit="submitTicket(event)">
-                    <div class="form-group">
-                        <label>Your Name</label>
-                        <input type="text" required placeholder="Enter your full name">
-                    </div>
-                    <div class="form-group">
-                        <label>Email Address</label>
-                        <input type="email" required placeholder="your.email@example.com">
-                    </div>
-                    <div class="form-group">
-                        <label>Phone Number</label>
-                        <input type="tel" required placeholder="+91 XXXXX XXXXX">
-                    </div>
-                    <div class="form-group">
-                        <label>Issue Type</label>
-                        <select required>
-                            <option value="">Select an option</option>
-                            <option value="technical">Technical Issue</option>
-                            <option value="billing">Billing Query</option>
-                            <option value="feature">Feature Request</option>
-                            <option value="complaint">Complaint</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Describe Your Issue</label>
-                        <textarea required placeholder="Please provide as much detail as possible..."></textarea>
-                    </div>
-                    <button type="submit" class="submit-ticket">Submit Ticket</button>
-                </form>
+                <h2 class="section-title" style="font-size: 2rem; text-align: left;">Quick Info</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 2rem;">Ask our AI chatbot anything about AME! For complex issues that the chatbot can't resolve, it will provide you a link to raise a detailed support ticket.</p>
+                
+                <div style="background: rgba(138, 43, 226, 0.1); border: 1px solid rgba(138, 43, 226, 0.3); border-radius: 15px; padding: 1.5rem; margin-bottom: 2rem;">
+                    <h4 style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-lightbulb" style="color: var(--accent);"></i> Try asking:
+                    </h4>
+                    <ul style="color: var(--text-secondary); line-height: 2; padding-left: 1.5rem;">
+                        <li>"How do I setup GST?"</li>
+                        <li>"How to create an invoice?"</li>
+                        <li>"Does it work offline?"</li>
+                        <li>"How secure is my data?"</li>
+                        <li>"What's the pricing?"</li>
+                    </ul>
+                </div>
+
+                <a href="ticket.html" style="display: inline-block; width: 100%; text-decoration: none;">
+                    <button class="btn-primary" style="width: 100%; justify-content: center; padding: 1.2rem;">
+                        <i class="fas fa-ticket-alt"></i> Raise Support Ticket
+                    </button>
+                </a>
             </div>
         </div>
     </section>
@@ -1382,8 +1230,8 @@
     <footer id="about">
         <div class="footer-container">
             <div class="footer-brand">
-                <h3>AME</h3>
-                <p>Empowering Indian SMBs with AI-powered business management. Built with <i class="fas fa-heart" style="color: #f59e0b;"></i> for small businesses across India.</p>
+                <h3><img src="bbg1.png" alt="AME Logo"> AME</h3>
+                <p>Empowering Indian SMBs with AI-powered business management. Built with <i class="fas fa-heart" style="color: var(--accent);"></i> for small businesses across India.</p>
                 <div class="social-links">
                     <a href="#" class="social-link">
                         <i class="fab fa-facebook"></i>
@@ -1428,7 +1276,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 AME - Accounting Made Easy. All rights reserved. Made in India <i class="fas fa-flag" style="color: #ff9933;"></i></p>
+            <p>&copy; 2025 AME - AI Business Assistant. All rights reserved. Made in India</i></p>
         </div>
     </footer>
 
@@ -1463,7 +1311,7 @@
                 <i class="fas fa-download"></i>
             </div>
             <h2 class="modal-title" id="modalTitle">Download Starting...</h2>
-            <p class="modal-text" id="modalText">Your download will begin shortly. Thank you for choosing BizAssist!</p>
+            <p class="modal-text" id="modalText">Your download will begin shortly. Thank you for choosing AME!</p>
             <button class="btn-primary" onclick="closeModal()" style="width: 100%;">Close</button>
         </div>
     </div>
@@ -1634,6 +1482,109 @@
 
         window.addEventListener('scroll', updateSectionIndicators);
 
+        const chatbotKnowledge = {
+            greetings: {
+                patterns: ['hi', 'hello', 'hey', 'good morning', 'good evening', 'namaste'],
+                responses: [
+                    "Hello! Welcome to AME Support. How can I assist you today?",
+                    "Hi there! I'm here to help with any questions about AME. What would you like to know?",
+                    "Namaste! How can I help you with AME today?"
+                ]
+            },
+            gst: {
+                patterns: ['gst', 'tax', 'filing', 'gstin', 'compliance'],
+                responses: [
+                    "To setup GST in AME: Go to Settings → Tax Configuration → Enter your GSTIN. The app will automatically calculate GST on all invoices. You can also generate GST reports from the Reports section.",
+                    "AME handles GST automatically! Enter your GSTIN in settings, and we'll calculate tax, generate invoices, and remind you about filing deadlines."
+                ]
+            },
+            invoice: {
+                patterns: ['invoice', 'bill', 'billing', 'receipt'],
+                responses: [
+                    "Creating invoices in AME is simple! Tap the '+' button → Select 'New Invoice' → Add customer details and items → Save. You can share invoices via WhatsApp, email, or print them directly.",
+                    "AME generates professional invoices with your logo, GST details, and payment terms. Access them from the Dashboard → Invoices section."
+                ]
+            },
+            inventory: {
+                patterns: ['inventory', 'stock', 'items', 'products'],
+                responses: [
+                    "Manage inventory with voice commands! Say 'Add stock' or 'Update inventory' in Hindi or English. AME tracks stock levels and alerts you when items are running low.",
+                    "Go to Inventory → Add Item → Enter details. You can also use the voice feature by tapping the microphone icon and speaking in your preferred language."
+                ]
+            },
+            payment: {
+                patterns: ['payment', 'pay', 'transaction', 'money', 'rupee'],
+                responses: [
+                    "AME tracks all payments automatically. Record payments from Dashboard → Payments → Add Payment. The app sends automatic reminders to customers with pending payments.",
+                    "You can accept payments via UPI, cash, card, or bank transfer. All transactions are logged automatically with date, amount, and payment method."
+                ]
+            },
+            customer: {
+                patterns: ['customer', 'client', 'khata', 'credit', 'debt'],
+                responses: [
+                    "AME's digital khata tracks customer credit and payments. Add customers from Customers → New Customer. View outstanding amounts, payment history, and send automated follow-ups.",
+                    "Track customer credit easily! The app maintains complete payment history and can send WhatsApp reminders for pending payments automatically."
+                ]
+            },
+            voice: {
+                patterns: ['voice', 'speak', 'hindi', 'language'],
+                responses: [
+                    "AME supports voice commands in Hindi and English! Tap the microphone icon anywhere in the app and speak naturally. Use it for adding stock, creating invoices, or recording payments.",
+                    "Voice features work offline too! Just enable voice input in Settings → Language & Voice. Say commands like 'Stock kamm hai' or 'Nayi invoice banao'."
+                ]
+            },
+            download: {
+                patterns: ['download', 'install', 'get app', 'link'],
+                responses: [
+                    "Download AME from Google Play Store or get the APK directly from our website. Scroll to the Download section above for all download options!",
+                    "AME is available on Android via Play Store and APK. iOS version coming soon! Check the Download section for links."
+                ]
+            },
+            price: {
+                patterns: ['price', 'cost', 'free', 'subscription', 'plan'],
+                responses: [
+                    "AME offers a free plan with basic features. Premium plans start at ₹299/month with advanced analytics, unlimited invoices, and priority support.",
+                    "Try AME free for 30 days with all premium features! After that, choose a plan that fits your business needs."
+                ]
+            },
+            support: {
+                patterns: ['help', 'support', 'problem', 'issue', 'error'],
+                responses: [
+                    "I'm here to help! Can you describe your issue? If you need detailed assistance, I can provide a link to raise a support ticket.",
+                    "Let me try to help you! What specific problem are you facing? For complex issues, I recommend raising a support ticket."
+                ]
+            },
+            offline: {
+                patterns: ['offline', 'internet', 'network', 'wifi'],
+                responses: [
+                    "Yes! AME works offline. All your data is stored locally and syncs automatically when you're back online. You can create invoices, manage inventory, and record payments without internet.",
+                    "AME's offline mode lets you work seamlessly without internet. Everything syncs in the background when connected."
+                ]
+            },
+            security: {
+                patterns: ['security', 'safe', 'data', 'privacy', 'backup'],
+                responses: [
+                    "AME uses bank-level encryption to protect your data. All information is backed up to secure cloud storage and complies with Indian data protection regulations.",
+                    "Your data is completely secure with end-to-end encryption, automatic backups, and secure cloud storage. We never share your business information with third parties."
+                ]
+            }
+        };
+
+        function getBotResponse(userInput) {
+            const input = userInput.toLowerCase().trim();
+            
+            for (const [category, data] of Object.entries(chatbotKnowledge)) {
+                for (const pattern of data.patterns) {
+                    if (input.includes(pattern)) {
+                        const responses = data.responses;
+                        return responses[Math.floor(Math.random() * responses.length)];
+                    }
+                }
+            }
+            
+            return null;
+        }
+
         function sendMessage() {
             const input = document.getElementById('chatInput');
             const messagesContainer = document.getElementById('chatMessages');
@@ -1644,12 +1595,21 @@
                 userMessage.textContent = input.value;
                 messagesContainer.appendChild(userMessage);
                 
+                const userQuery = input.value;
                 input.value = '';
                 
                 setTimeout(() => {
                     const botMessage = document.createElement('div');
                     botMessage.classList.add('message', 'bot');
-                    botMessage.textContent = "I understand your query. Let me help you with that. For detailed assistance, please check our documentation or raise a support ticket.";
+                    
+                    const response = getBotResponse(userQuery);
+                    
+                    if (response) {
+                        botMessage.textContent = response;
+                    } else {
+                        botMessage.innerHTML = `I apologize, but I don't have specific information about that. For detailed assistance with your query, please <a href="ticket.html" style="color: var(--secondary); text-decoration: underline; font-weight: 600;">raise a support ticket here</a> and our team will help you within 24 hours.`;
+                    }
+                    
                     messagesContainer.appendChild(botMessage);
                     messagesContainer.scrollTop = messagesContainer.scrollHeight;
                 }, 1000);
