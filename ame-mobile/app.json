@@ -1,0 +1,50 @@
+{
+  "expo": {
+    "name": "AME",
+    "slug": "ame-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ame.mobile",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Allow AME to access your camera to scan invoices",
+        "NSLocationWhenInUseUsageDescription": "Allow AME to verify your business location during setup. This is used only once."
+      }
+    },
+    "android": {
+      "package": "com.ame.mobile",
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION"
+      ]
+    },
+    "web": {
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow AME to access your camera to scan invoices"
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow AME to verify your business location during setup. This is used only once."
+        }
+      ]
+    ],
+    "scheme": "ame",
+    "extra": {
+      "router": {
+        "origin": false
+      }
+    }
+  }
+}
